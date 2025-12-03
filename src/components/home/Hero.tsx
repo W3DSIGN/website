@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { ThemeToggle } from '../ui/ThemeToggle';
 
 export const Hero = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -173,6 +174,7 @@ export const Hero = () => {
           >
             Latest Projects
           </a>
+          <ThemeToggle />
         </div>
 
         {/* Footer/Bottom Info */}
@@ -182,7 +184,7 @@ export const Hero = () => {
       </div>
 
       {/* Hero Grid Container */}
-      <div className="grid grid-cols-6 grid-rows-8 relative w-full h-dvh lg:grid-cols-12 lg:grid-rows-12 bg-white font-kode-mono overflow-hidden">
+      <div className="grid grid-cols-6 grid-rows-8 relative w-full h-dvh lg:grid-cols-12 lg:grid-rows-12 bg-theme font-kode-mono overflow-hidden">
         
         {/* Hero Image/Video Container - Right Side */}
         <div className="hero-image-container col-start-1 col-end-7 row-start-3 row-end-9 lg:col-start-5 lg:col-end-13 lg:row-start-1 lg:row-end-13 bg-cover p-0 lg:p-4 relative overflow-hidden">
@@ -194,16 +196,16 @@ export const Hero = () => {
             />
             {/* 4 Vertical Masks */}
             <div className="absolute inset-0 flex">
-              <div className="image-mask w-1/4 h-full bg-white z-20 origin-top will-change-transform"></div>
-              <div className="image-mask w-1/4 h-full bg-white z-20 origin-top will-change-transform"></div>
-              <div className="image-mask w-1/4 h-full bg-white z-20 origin-top will-change-transform"></div>
-              <div className="image-mask w-1/4 h-full bg-white z-20 origin-top will-change-transform"></div>
+              <div className="image-mask w-1/4 h-full bg-theme z-20 origin-top will-change-transform"></div>
+              <div className="image-mask w-1/4 h-full bg-theme z-20 origin-top will-change-transform"></div>
+              <div className="image-mask w-1/4 h-full bg-theme z-20 origin-top will-change-transform"></div>
+              <div className="image-mask w-1/4 h-full bg-theme z-20 origin-top will-change-transform"></div>
             </div>
           </div>
         </div>
 
         {/* Tagline - Bottom Left */}
-        <div className="col-start-1 col-end-7 row-start-8 row-end-9 lg:col-start-1 lg:col-end-5 lg:row-start-9 lg:row-end-13 bg-white lg:bg-transparent flex items-center justify-center lg:justify-start lg:items-end p-4 lg:pr-4 lg:pb-8 z-10">
+        <div className="col-start-1 col-end-7 row-start-8 row-end-9 lg:col-start-1 lg:col-end-5 lg:row-start-9 lg:row-end-13 bg-theme lg:bg-transparent flex items-center justify-center lg:justify-start lg:items-end p-4 lg:pr-4 lg:pb-8 z-10">
           <h1 
             className="uppercase w-full text-brand-pink leading-tight lg:leading-[0.9] flex flex-col justify-center lg:justify-start gap-x-2 text-center lg:text-left"
             style={{ fontSize: 'clamp(2rem, 6vw, 7rem)' }}
@@ -220,7 +222,7 @@ export const Hero = () => {
 
         {/* Logo and Marquee Container - Floating over image on desktop */}
         <div className="col-start-1 col-end-7 row-start-1 row-end-3 lg:col-start-1 lg:col-end-9 lg:row-start-1 lg:row-end-5 overflow-hidden relative z-30">
-          <div className="logo-wrapper w-full h-full bg-white flex flex-col justify-end p-4 will-change-[clip-path]">
+          <div className="logo-wrapper w-full h-full bg-theme flex flex-col justify-end p-4 will-change-[clip-path]">
             
             {/* Logo */}
             <div className="w-full flex items-end mb-4 overflow-hidden">
@@ -234,7 +236,7 @@ export const Hero = () => {
             </div>
 
             {/* Marquee */}
-            <div className="marquee-container bg-white text-brand-pink text-xs lg:text-sm w-full uppercase tracking-widest self-start overflow-hidden whitespace-nowrap flex will-change-transform">
+            <div className="marquee-container bg-theme text-brand-pink text-xs lg:text-sm w-full uppercase tracking-widest self-start overflow-hidden whitespace-nowrap flex will-change-transform">
               <div className="flex whitespace-nowrap animate-marquee">
                 <span className="mr-4">Branding - Web Design - Digital Marketing - Social Media Content - </span>
                 <span className="mr-4">Branding - Web Design - Digital Marketing - Social Media Content - </span>

@@ -200,7 +200,7 @@ export const ServicesScroll = () => {
       {/* Desktop/Tablet Version - Animated */}
       <section
         ref={desktopRef}
-        className="hidden md:block relative w-full h-dvh overflow-hidden bg-white"
+        className="hidden md:block relative w-full h-dvh overflow-hidden bg-theme"
       >
         {/* Blue/Pink Block - Centered vertically with margins */}
         <div className="absolute top-1/2 -translate-y-1/2 right-4 w-2/3 h-[60dvh] bg-brand-pink z-10">
@@ -236,7 +236,7 @@ export const ServicesScroll = () => {
                 <div className="w-full mb-12 lg:mb-16 overflow-hidden">
                   <div className="service-title transform translate-y-full will-change-transform">
                     {service.title.map((line, i) => (
-                      <h3 key={i} className="text-6xl lg:text-8xl xl:text-9xl font-black leading-none text-black">
+                      <h3 key={i} className="text-6xl lg:text-8xl xl:text-9xl font-black leading-none text-theme">
                         {line}
                       </h3>
                     ))}
@@ -250,7 +250,7 @@ export const ServicesScroll = () => {
                       <div key={i} className="service-item opacity-0 transform translate-y-12 will-change-transform">
                         <span className="block w-4 h-0.5 bg-black mb-3"></span>
                         <div className="overflow-hidden">
-                        <p className="text-xs lg:text-sm xl:text-base text-black leading-tight">
+                        <p className="text-xs lg:text-sm xl:text-base text-theme leading-tight">
                           {item}
                         </p>
                       </div>
@@ -265,7 +265,7 @@ export const ServicesScroll = () => {
       </section>
 
       {/* Mobile Version - Static Scroll */}
-      <section className="md:hidden w-full bg-white py-8">
+      <section className="md:hidden w-full bg-theme py-8">
         {services.map((service) => (
           <div key={service.id} className="px-6 py-12 flex flex-col">
             {/* Number */}
@@ -276,7 +276,7 @@ export const ServicesScroll = () => {
             {/* Title */}
             <div className="mb-8">
               {service.title.map((line, i) => (
-                <h3 key={i} className="text-5xl font-black leading-none text-black mb-2">
+                <h3 key={i} className="text-5xl font-black leading-none text-theme mb-2">
                   {line}
                 </h3>
               ))}
@@ -286,7 +286,7 @@ export const ServicesScroll = () => {
             <div className="space-y-4 bg-gray-50 p-6 rounded-2xl">
               {service.items.map((item, i) => (
                 <div key={i}>
-                  <p className="text-base text-black">
+                  <p className="text-base text-theme">
                     {item}
                   </p>
                 </div>
