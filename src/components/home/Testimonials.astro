@@ -1,0 +1,46 @@
+---
+import Brands from "./Brands.astro";
+
+const testimonials = [
+  {
+    quote:
+      "They transformed our vision into a digital masterpiece. The attention to detail is unmatched.",
+    author: "Sarah Jenkins",
+    role: "CEO, TechStart",
+  },
+  {
+    quote:
+      "A partner that truly understands modern aesthetics and functionality. Highly recommended.",
+    author: "Marcus Chen",
+    role: "Director, ArtGallery",
+  },
+];
+---
+
+<section class="py-24 px-6 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-5xl md:text-7xl font-black mb-16 text-brand-pink">
+      CREDIBILITY
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
+      {
+        testimonials.map((t) => (
+          <div class="bg-gray-50 p-10 rounded-3xl border border-gray-100">
+            <p class="text-xl md:text-2xl font-medium leading-relaxed mb-8 text-brand-pink">
+              "{t.quote}"
+            </p>
+            <div>
+              <p class="font-black text-lg text-brand-pink">{t.author}</p>
+              <p class="text-brand-pink text-sm uppercase tracking-wider">
+                {t.role}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <Brands />
+  </div>
+</section>

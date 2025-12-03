@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-yellow: #f4ff00;
+  --color-brand-pink: #ff70d2;
+  --color-text-main: #1a1a1a; /* Dark gray for text on white bg */
+
+  --font-kode-mono: 'Kode Mono', monospace;
+}
+
+@layer base {
+  html,
+  body {
+    @apply bg-white text-text-main antialiased;
+    font-family: 'Kode Mono', monospace;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Kode Mono', monospace;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+}
+
+@utility animate-spin-slow {
+  animation: spin 8s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@utility animate-marquee {
+  animation: marquee 15s linear infinite;
+}
+
+@utility writing-mode-vertical {
+  writing-mode: vertical-rl;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

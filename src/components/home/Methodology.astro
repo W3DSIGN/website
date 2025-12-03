@@ -1,0 +1,48 @@
+---
+const steps = [
+  {
+    num: "01",
+    title: "Discovery",
+    desc: "We dive deep into your brand, goals, and audience to build a solid foundation.",
+  },
+  {
+    num: "02",
+    title: "Strategy",
+    desc: "We craft a roadmap that aligns creative vision with business objectives.",
+  },
+  {
+    num: "03",
+    title: "Design",
+    desc: "Visualizing the concept with high-fidelity designs and interactive prototypes.",
+  },
+  {
+    num: "04",
+    title: "Development",
+    desc: "Bringing designs to life with clean, performant, and scalable code.",
+  },
+];
+---
+
+<section class="py-24 px-6 bg-black text-white">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-5xl md:text-7xl font-black mb-16 text-brand-pink">
+      METHODOLOGY
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {
+        steps.map((step) => (
+          <div class="border-t border-gray-800 pt-8 group hover:border-brand-pink transition-colors duration-500">
+            <span class="text-4xl font-black text-gray-800 mb-4 block group-hover:text-brand-pink transition-colors duration-500">
+              {step.num}
+            </span>
+            <h3 class="text-2xl font-bold mb-4 text-brand-pink">
+              {step.title}
+            </h3>
+            <p class="text-gray-400 leading-relaxed">{step.desc}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
