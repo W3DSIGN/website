@@ -98,7 +98,7 @@ export const SelectedWork = () => {
         {/* Desktop Title - Animated */}
         <h2 ref={titleRef} className="hidden md:flex text-[15vw] md:text-[12vw] lg:text-[10vw] leading-none text-black flex-wrap overflow-hidden font-kode-mono">
           {title.split('').map((char, i) => (
-            <span key={i} className="char inline-block transform translate-y-full">
+            <span key={i} className="char inline-block transform translate-y-full will-change-transform">
               {char === ' ' ? '\u00A0' : char}
             </span>
           ))}
@@ -111,10 +111,10 @@ export const SelectedWork = () => {
           <div
             key={index}
             ref={el => { rowRefs.current[index] = el }}
-            className="group relative px-4 py-3 md:py-4 border-b border-black last:border-b-0 overflow-hidden cursor-pointer"
+            className="group relative px-4 py-3 md:py-4 border-b border-black last:border-b-0 overflow-hidden cursor-pointer will-change-transform"
           >
             {/* Hover Background - Clip Mask Effect */}
-            <div className="absolute inset-0 bg-brand-yellow z-0 transition-transform duration-500 ease-out transform scale-y-0 group-hover:scale-y-100 origin-center" />
+            <div className="absolute inset-0 bg-brand-yellow z-0 transition-transform duration-500 ease-out transform scale-y-0 group-hover:scale-y-100 origin-center will-change-transform" />
 
             {/* Content */}
             <div className="relative z-10">
@@ -132,7 +132,7 @@ export const SelectedWork = () => {
                 <div className="text-black font-kode-mono text-base flex items-center gap-2">
                   <span>•</span>
                   <span>{project.service}</span>
-                  <svg className="w-5 h-5 ml-auto transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 ml-auto transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300 will-change-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 17L17 7M17 7H7M17 7V17" />
                   </svg>
                 </div>
@@ -151,7 +151,7 @@ export const SelectedWork = () => {
                 </div>
                 <div className="text-black font-kode-mono text-lg lg:text-xl flex items-center justify-between">
                   <span>{project.service}</span>
-                  <svg className="w-6 h-6 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-6 h-6 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300 will-change-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 17L17 7M17 7H7M17 7V17" />
                   </svg>
                 </div>

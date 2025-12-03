@@ -213,7 +213,7 @@ export const ServicesScroll = () => {
                 </span>
                 <span 
                   ref={el => { numberFillsRef.current[index] = el }}
-                  className="absolute top-0 left-0 text-2xl lg:text-3xl text-white font-kode-mono"
+                  className="absolute top-0 left-0 text-2xl lg:text-3xl text-white font-kode-mono will-change-[clip-path]"
                   style={{ clipPath: 'inset(100% 0 0 0)' }}
                 >
                   {service.id}.
@@ -234,7 +234,7 @@ export const ServicesScroll = () => {
               >
                 {/* Title - Centered vertically, aligned to middle horizontally */}
                 <div className="w-full mb-12 lg:mb-16 overflow-hidden">
-                  <div className="service-title transform translate-y-full">
+                  <div className="service-title transform translate-y-full will-change-transform">
                     {service.title.map((line, i) => (
                       <h3 key={i} className="text-6xl lg:text-8xl xl:text-9xl font-black leading-none text-black">
                         {line}
@@ -247,7 +247,7 @@ export const ServicesScroll = () => {
                 <div className="w-full flex justify-start">
                   <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 xl:gap-12 max-w-4xl">
                     {service.items.map((item, i) => (
-                      <div key={i} className="service-item opacity-0 transform translate-y-12">
+                      <div key={i} className="service-item opacity-0 transform translate-y-12 will-change-transform">
                         <span className="block w-4 h-0.5 bg-black mb-3"></span>
                         <div className="overflow-hidden">
                         <p className="text-xs lg:text-sm xl:text-base text-black leading-tight">

@@ -121,12 +121,22 @@ export const Hero = () => {
     }
   }, []);
 
+  const handleMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
+    gsap.to(e.currentTarget, { scale: 1.05, duration: 0.2, ease: 'power1.out' });
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLElement>) => {
+    gsap.to(e.currentTarget, { scale: 1, duration: 0.2, ease: 'power1.out' });
+  };
+
   return (
     <>
       {/* Fixed Menu Button */}
       <div 
         onClick={() => setIsMenuOpen(true)}
-        className={`menu-button fixed top-0 right-4 bg-black p-4 flex items-center justify-center text-white text-sm lg:text-base z-50 cursor-pointer hover:bg-gray-900 transition-colors uppercase tracking-wider ${isMenuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        className={`menu-button fixed top-0 right-4 bg-black p-4 flex items-center justify-center text-white text-sm lg:text-base z-50 cursor-pointer hover:bg-gray-900 transition-colors uppercase tracking-wider will-change-transform ${isMenuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
       >
         Menu
       </div>
@@ -134,14 +144,16 @@ export const Hero = () => {
       {/* Menu Overlay */}
       <div 
         ref={menuRef}
-        className="fixed top-0 right-0 w-full md:w-[50vw] lg:w-[40vw] h-dvh bg-black z-60 flex flex-col p-8 md:p-12 lg:p-16 justify-between"
+        className="fixed top-0 right-0 w-full md:w-[50vw] lg:w-[40vw] h-dvh bg-black z-60 flex flex-col p-8 md:p-12 lg:p-16 justify-between will-change-[clip-path]"
         style={{ clipPath: 'inset(0 0 0 100%)' }}
       >
         {/* Close Button */}
         <div className="w-full flex justify-end mb-12">
           <button 
             onClick={() => setIsMenuOpen(false)}
-            className="text-white hover:text-gray-300 transition-colors"
+            onMouseEnter={(e) => gsap.to(e.currentTarget, { rotation: 90, duration: 0.3 })}
+            onMouseLeave={(e) => gsap.to(e.currentTarget, { rotation: 0, duration: 0.3 })}
+            className="text-white hover:text-gray-300 transition-colors will-change-transform"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -152,7 +164,15 @@ export const Hero = () => {
 
         {/* Menu Content */}
         <div ref={menuContentRef} className="flex flex-col gap-4 text-white">
-          <a href="#latest-projects" onClick={() => setIsMenuOpen(false)} className="text-3xl md:text-4xl lg:text-5xl uppercase hover:text-brand-pink transition-colors">Latest Projects</a>
+          <a 
+            href="#latest-projects" 
+            onClick={() => setIsMenuOpen(false)} 
+            onMouseEnter={(e) => gsap.to(e.currentTarget, { x: 10, duration: 0.2 })}
+            onMouseLeave={(e) => gsap.to(e.currentTarget, { x: 0, duration: 0.2 })}
+            className="text-3xl md:text-4xl lg:text-5xl uppercase hover:text-brand-pink transition-colors will-change-transform"
+          >
+            Latest Projects
+          </a>
         </div>
 
         {/* Footer/Bottom Info */}
@@ -174,10 +194,10 @@ export const Hero = () => {
             />
             {/* 4 Vertical Masks */}
             <div className="absolute inset-0 flex">
-              <div className="image-mask w-1/4 h-full bg-white z-20 origin-top"></div>
-              <div className="image-mask w-1/4 h-full bg-white z-20 origin-top"></div>
-              <div className="image-mask w-1/4 h-full bg-white z-20 origin-top"></div>
-              <div className="image-mask w-1/4 h-full bg-white z-20 origin-top"></div>
+              <div className="image-mask w-1/4 h-full bg-white z-20 origin-top will-change-transform"></div>
+              <div className="image-mask w-1/4 h-full bg-white z-20 origin-top will-change-transform"></div>
+              <div className="image-mask w-1/4 h-full bg-white z-20 origin-top will-change-transform"></div>
+              <div className="image-mask w-1/4 h-full bg-white z-20 origin-top will-change-transform"></div>
             </div>
           </div>
         </div>
@@ -189,22 +209,22 @@ export const Hero = () => {
             style={{ fontSize: 'clamp(2rem, 6vw, 7rem)' }}
           >
             <div className="overflow-hidden w-full">
-              <span className="tagline-row block w-full lg:hidden">Behind Every Digital Moment</span>
-              <span className="tagline-row hidden lg:block w-full">Behind Every</span>
+              <span className="tagline-row block w-full lg:hidden will-change-transform">Behind Every Digital Moment</span>
+              <span className="tagline-row hidden lg:block w-full will-change-transform">Behind Every</span>
             </div>
             <div className="overflow-hidden w-full hidden lg:block">
-              <span className="tagline-row block w-full">Digital Moment</span>
+              <span className="tagline-row block w-full will-change-transform">Digital Moment</span>
             </div>
           </h1>
         </div>
 
         {/* Logo and Marquee Container - Floating over image on desktop */}
         <div className="col-start-1 col-end-7 row-start-1 row-end-3 lg:col-start-1 lg:col-end-9 lg:row-start-1 lg:row-end-5 overflow-hidden relative z-30">
-          <div className="logo-wrapper w-full h-full bg-white flex flex-col justify-end p-4">
+          <div className="logo-wrapper w-full h-full bg-white flex flex-col justify-end p-4 will-change-[clip-path]">
             
             {/* Logo */}
             <div className="w-full flex items-end mb-4 overflow-hidden">
-              <div className="logo-img flex w-full">
+              <div className="logo-img flex w-full will-change-transform">
                 <img 
                   src="/src/assets/w3dsign.svg" 
                   alt="W3 DSIGN Logo" 
@@ -214,7 +234,7 @@ export const Hero = () => {
             </div>
 
             {/* Marquee */}
-            <div className="marquee-container bg-white text-brand-pink text-xs lg:text-sm w-full uppercase tracking-widest self-start overflow-hidden whitespace-nowrap flex">
+            <div className="marquee-container bg-white text-brand-pink text-xs lg:text-sm w-full uppercase tracking-widest self-start overflow-hidden whitespace-nowrap flex will-change-transform">
               <div className="flex whitespace-nowrap animate-marquee">
                 <span className="mr-4">Branding - Web Design - Digital Marketing - Social Media Content - </span>
                 <span className="mr-4">Branding - Web Design - Digital Marketing - Social Media Content - </span>
