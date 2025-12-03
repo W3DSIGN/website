@@ -226,7 +226,7 @@ export const Hero = () => {
             <div className="w-full flex items-end mb-4 overflow-hidden">
               <div className="logo-img flex w-full will-change-transform">
                 <img 
-                  src="/src/assets/w3dsign.svg" 
+                  src="/w3dsign.svg" 
                   alt="W3 DSIGN Logo" 
                   className="w-full h-auto"
                 />
