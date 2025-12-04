@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { CyberpunkCursor } from './CyberpunkCursor';
 
 export const ThemeToggle = () => {
   const [isDark, setIsDark] = useState(false);
@@ -26,12 +27,15 @@ export const ThemeToggle = () => {
   };
 
   return (
-    <button
-      onClick={toggleTheme}
-      className="flex items-center gap-3 text-3xl md:text-4xl lg:text-5xl uppercase hover:opacity-70 transition-opacity"
-      aria-label={isDark ? 'Switch to day mode' : 'Switch to night mode'}
-    >
-      <span>{isDark ? '☀️ Day Mode' : '🌙 Night Mode'}</span>
-    </button>
+    <>
+      {isDark && <CyberpunkCursor />}
+      <button
+        onClick={toggleTheme}
+        className="flex items-center gap-3 text-3xl md:text-4xl lg:text-5xl uppercase hover:opacity-70 transition-opacity"
+        aria-label={isDark ? 'Switch to day mode' : 'Switch to cyberpunk mode'}
+      >
+        <span>{isDark ? '☀️ Day Mode' : '⚡ Cyberpunk'}</span>
+      </button>
+    </>
   );
 };

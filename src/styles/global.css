@@ -97,6 +97,43 @@
   }
 }
 
+/* Cyberpunk Cursor - Only in dark mode */
+:root.dark-mode {
+  cursor: none;
+}
+
+:root.dark-mode * {
+  cursor: none !important;
+}
+
+.cyberpunk-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+}
+
+.cursor-pixel {
+  position: absolute;
+  background: #ff70d2;
+  border-radius: 1px;
+  box-shadow: 0 0 8px #ff70d2, 0 0 12px #ff70d2;
+  animation: pixelGlow 1.5s ease-in-out infinite;
+}
+
+@keyframes pixelGlow {
+  0%, 100% {
+    opacity: 0.8;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.5);
+  }
+}
+
 body::-webkit-scrollbar {
   width: 20px
 }
