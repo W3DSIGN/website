@@ -34,7 +34,7 @@ export const ThemeToggle = () => {
         className="flex items-center gap-3 text-3xl md:text-4xl lg:text-5xl uppercase hover:opacity-70 transition-opacity"
         aria-label={isDark ? 'Switch to formal mode' : 'Switch to cyberpunk mode'}
       >
-        <span>{isDark ? '💼 Formal Mode' : '⚡ Cyberpunk'}</span>
+        <span>{isDark ? 'Formal Mode' : 'Cyberpunk'}</span>
       </button>
     </>
   );
