@@ -152,19 +152,36 @@ export const ServicesScroll = () => {
           startTime + 0.4
         );
 
-        // 2. Next Service Enter (after current exits)
+        // Glitch Effect (Cyberpunk Mode Only)
+        // We add a callback to check mode at runtime
+        tl.call(() => {
+          const isCyberpunk = document.documentElement.classList.contains('dark-mode');
+          const glitchOverlay = container.querySelector('.glitch-overlay');
+          
+          if (isCyberpunk && glitchOverlay) {
+            // Show glitch
+            gsap.to(glitchOverlay, { opacity: 1, duration: 0.1 });
+            // Hide glitch after 1s
+            gsap.to(glitchOverlay, { opacity: 0, duration: 0.1, delay: 1 });
+          }
+        }, [], startTime + 0.7);
+
+        // 2. Next Service Enter (after current exits + glitch duration)
+        // We add 1s delay for the glitch effect
+        const enterDelay = 1.0;
+
         tl.fromTo(
           titleNext,
           { y: "100%", opacity: 0 },
           { y: "0%", opacity: 1, duration: 0.3, ease: "power2.out" },
-          startTime + 0.7
+          startTime + 0.7 + enterDelay
         );
 
         tl.fromTo(
           itemsNext,
           { y: 50, opacity: 0 },
           { y: 0, opacity: 1, duration: 0.3, stagger: 0.08, ease: "power2.out" },
-          startTime + 0.75
+          startTime + 0.75 + enterDelay
         );
 
         // 3. Number Animations
@@ -181,7 +198,7 @@ export const ServicesScroll = () => {
           numberFillNext,
           { clipPath: "inset(100% 0 0 0)" },
           { clipPath: "inset(0% 0 0 0)", duration: 0.5, ease: "none" },
-          startTime + 0.5
+          startTime + 0.5 + enterDelay
         );
       });
     };
@@ -203,9 +220,15 @@ export const ServicesScroll = () => {
         className="hidden md:block relative w-full h-dvh overflow-hidden bg-theme"
       >
         {/* Blue/Pink Block - Centered vertically with margins */}
-        <div className="absolute top-1/2 -translate-y-1/2 right-4 w-2/3 h-[60dvh] bg-brand-pink z-10">
+        <div className="absolute top-1/2 -translate-y-1/2 right-4 w-2/3 h-[60dvh] bg-brand-pink z-10 overflow-hidden">
+          {/* Glitch GIF Overlay */}
+          <div 
+            className="glitch-overlay absolute inset-0 z-0 opacity-0 pointer-events-none bg-cover bg-center"
+            style={{ backgroundImage: 'url(/glitch.gif)' }}
+          ></div>
+
           {/* Numbers inside pink block */}
-          <div className="absolute top-8 right-6 lg:right-12 xl:right-16 flex gap-8 lg:gap-12">
+          <div className="absolute top-8 right-6 lg:right-12 xl:right-16 flex gap-8 lg:gap-12 z-10">
             {services.map((service, index) => (
               <div key={service.id} className="relative">
                 <span className="text-2xl lg:text-3xl text-white/30 font-kode-mono">
