@@ -121,7 +121,7 @@ export const OurTeam = () => {
   const title = "OUR TEAM";
 
   return (
-    <section ref={containerRef} className="w-full min-h-dvh p-4 bg-theme grid grid-cols-1 md:grid-cols-2 md:grid-rows-[1fr_auto] gap-4 overflow-hidden">
+    <section id="team" ref={containerRef} className="w-full min-h-dvh p-4 md:py-24 bg-theme grid grid-cols-1 md:grid-cols-2 md:grid-rows-[1fr_auto] gap-4 overflow-hidden">
       
       {/* Block A: Title & Main Description */}
       <div className="flex flex-col md:col-start-1 md:row-start-1">

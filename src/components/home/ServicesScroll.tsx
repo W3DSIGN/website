@@ -199,6 +199,7 @@ export const ServicesScroll = () => {
     <>
       {/* Desktop/Tablet Version - Animated */}
       <section
+        id="services"
         ref={desktopRef}
         className="hidden md:block relative w-full h-dvh overflow-hidden bg-theme"
       >

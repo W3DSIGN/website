@@ -16,14 +16,11 @@
   --scrollbar-thumb: var(--color-brand-pink);
 }
 
-:root.dark-mode {
-  --bg-color: var(--color-brand-yellow);
-  --text-color: var(--color-brand-pink);
-  --scrollbar-track: var(--color-brand-yellow);
-  --scrollbar-thumb: var(--color-brand-pink);
-}
-
 @layer base {
+  html {
+    scroll-snap-type: y mandatory;
+  }
+
   html,
   body {
     background-color: var(--bg-color);
@@ -39,6 +36,11 @@
   body {
     user-select: none;
     -webkit-tap-highlight-color: transparent;
+  }
+
+  section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -96,8 +98,6 @@
     transition: border-color 0.3s ease;
   }
 }
-
-
 
 body::-webkit-scrollbar {
   width: 20px

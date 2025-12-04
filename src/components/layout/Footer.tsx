@@ -41,7 +41,7 @@ export const Footer = () => {
   }, []);
 
   return (
-    <footer ref={containerRef} className="w-full bg-theme py-12 px-4 md:px-8">
+    <footer id="contact" ref={containerRef} className="w-full bg-theme py-12 px-4 md:px-8">
       <div className="w-full flex flex-col md:flex-row justify-between items-center gap-8 md:gap-0 text-theme font-kode-mono text-sm md:text-base uppercase tracking-wide">
         
         {/* Left: Copyright */}
