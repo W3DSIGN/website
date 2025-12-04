@@ -69,12 +69,11 @@ export const ServicesScroll = () => {
       const totalServices = services.length;
       
       // Master Timeline
-      // We increase the scroll distance to account for the longer animations with glitch delay
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: container,
           start: "top top",
-          end: `+=${totalServices * 200}%`, // Increased from 100% to 200%
+          end: `+=${totalServices * 100}%`,
           pin: true,
           scrub: 0.5,
           snap: {
@@ -128,8 +127,7 @@ export const ServicesScroll = () => {
         const titleNext = slideNext.querySelector(".service-title");
         const itemsNext = slideNext.querySelectorAll(".service-item");
 
-        // Each transition now takes 2 units of time (1 for normal transition + 1 for glitch delay)
-        const startTime = i * 2;
+        const startTime = i;
 
         // 1. Current Service Exit (complete before next enters)
         tl.to(
@@ -154,36 +152,19 @@ export const ServicesScroll = () => {
           startTime + 0.4
         );
 
-        // Glitch Effect (Cyberpunk Mode Only)
-        // We add a callback to check mode at runtime
-        tl.call(() => {
-          const isCyberpunk = document.documentElement.classList.contains('dark-mode');
-          const glitchOverlay = container.querySelector('.glitch-overlay');
-          
-          if (isCyberpunk && glitchOverlay) {
-            // Show glitch
-            gsap.to(glitchOverlay, { opacity: 1, duration: 0.1 });
-            // Hide glitch after 1s
-            gsap.to(glitchOverlay, { opacity: 0, duration: 0.1, delay: 1 });
-          }
-        }, [], startTime + 0.7);
-
-        // 2. Next Service Enter (after current exits + glitch duration)
-        // We add 1s delay for the glitch effect
-        const enterDelay = 1.0;
-
+        // 2. Next Service Enter (after current exits)
         tl.fromTo(
           titleNext,
           { y: "100%", opacity: 0 },
           { y: "0%", opacity: 1, duration: 0.3, ease: "power2.out" },
-          startTime + 0.7 + enterDelay
+          startTime + 0.7
         );
 
         tl.fromTo(
           itemsNext,
           { y: 50, opacity: 0 },
           { y: 0, opacity: 1, duration: 0.3, stagger: 0.08, ease: "power2.out" },
-          startTime + 0.75 + enterDelay
+          startTime + 0.75
         );
 
         // 3. Number Animations
@@ -200,7 +181,7 @@ export const ServicesScroll = () => {
           numberFillNext,
           { clipPath: "inset(100% 0 0 0)" },
           { clipPath: "inset(0% 0 0 0)", duration: 0.5, ease: "none" },
-          startTime + 0.5 + enterDelay
+          startTime + 0.5
         );
       });
     };
@@ -222,15 +203,9 @@ export const ServicesScroll = () => {
         className="hidden md:block relative w-full h-dvh overflow-hidden bg-theme"
       >
         {/* Blue/Pink Block - Centered vertically with margins */}
-        <div className="absolute top-1/2 -translate-y-1/2 right-4 w-2/3 h-[60dvh] bg-brand-pink z-10 overflow-hidden">
-          {/* Glitch GIF Overlay */}
-          <div 
-            className="glitch-overlay absolute inset-0 z-0 opacity-0 pointer-events-none bg-cover bg-center"
-            style={{ backgroundImage: 'url(/glitch.gif)' }}
-          ></div>
-
+        <div className="absolute top-1/2 -translate-y-1/2 right-4 w-2/3 h-[60dvh] bg-black z-10">
           {/* Numbers inside pink block */}
-          <div className="absolute top-8 right-6 lg:right-12 xl:right-16 flex gap-8 lg:gap-12 z-10">
+          <div className="absolute top-8 right-6 lg:right-12 xl:right-16 flex gap-8 lg:gap-12">
             {services.map((service, index) => (
               <div key={service.id} className="relative">
                 <span className="text-2xl lg:text-3xl text-white/30 font-kode-mono">

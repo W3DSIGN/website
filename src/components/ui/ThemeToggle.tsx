@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { CyberpunkCursor } from './CyberpunkCursor';
+
 
 export const ThemeToggle = () => {
   const [isDark, setIsDark] = useState(false);
@@ -28,7 +28,7 @@ export const ThemeToggle = () => {
 
   return (
     <>
-      {isDark && <CyberpunkCursor />}
+
       <button
         onClick={toggleTheme}
         className="flex items-center gap-3 text-3xl md:text-4xl lg:text-5xl uppercase hover:opacity-70 transition-opacity"

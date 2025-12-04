@@ -5,6 +5,8 @@ import { Hero } from "../components/home/Hero";
 import Intro from "../components/home/Intro.astro";
 import { ServicesScroll } from "../components/home/ServicesScroll";
 import { SelectedWork } from "../components/home/SelectedWork";
+import { OurTeam } from "../components/home/OurTeam";
+import { Footer } from "../components/layout/Footer";
 ---
 
 <Layout title="Creative Digital Studio">
@@ -14,5 +16,7 @@ import { SelectedWork } from "../components/home/SelectedWork";
     <Intro />
     <ServicesScroll client:load />
     <SelectedWork client:load />
+    <OurTeam client:load />
+    <Footer client:load />
   </main>
 </Layout>

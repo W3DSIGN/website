@@ -110,10 +110,9 @@ export const Hero = () => {
 
       // 4. Menu Button Slide Down
       .fromTo(menuButton,
-        { y: '-100%', opacity: 0 },
+        { y: '-100%' },
         {
           y: '0%',
-          opacity: 1,
           duration: 0.6,
           ease: 'power3.out'
         },
