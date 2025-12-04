@@ -32,9 +32,9 @@ export const ThemeToggle = () => {
       <button
         onClick={toggleTheme}
         className="flex items-center gap-3 text-3xl md:text-4xl lg:text-5xl uppercase hover:opacity-70 transition-opacity"
-        aria-label={isDark ? 'Switch to day mode' : 'Switch to cyberpunk mode'}
+        aria-label={isDark ? 'Switch to formal mode' : 'Switch to cyberpunk mode'}
       >
-        <span>{isDark ? '☀️ Day Mode' : '⚡ Cyberpunk'}</span>
+        <span>{isDark ? '💼 Formal Mode' : '⚡ Cyberpunk'}</span>
       </button>
     </>
   );

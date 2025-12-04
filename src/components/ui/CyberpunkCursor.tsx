@@ -6,46 +6,69 @@ export const CyberpunkCursor = () => {
     cursor.className = 'cyberpunk-cursor';
     document.body.appendChild(cursor);
 
-    const pixels: HTMLDivElement[] = [];
-    const pixelCount = 12;
+    const trail: HTMLDivElement[] = [];
+    const trailLength = 8;
 
-    // Create pixel elements
-    for (let i = 0; i < pixelCount; i++) {
+    // Create trail elements with blur
+    for (let i = 0; i < trailLength; i++) {
+      const trailElement = document.createElement('div');
+      trailElement.className = 'cursor-trail';
+      trailElement.style.filter = `blur(${i * 0.5}px)`;
+      trailElement.style.opacity = `${1 - (i / trailLength) * 0.7}`;
+      cursor.appendChild(trailElement);
+      trail.push(trailElement);
+    }
+
+    // Create center pixel cluster
+    const centerCluster = document.createElement('div');
+    centerCluster.className = 'cursor-center';
+    cursor.appendChild(centerCluster);
+
+    for (let i = 0; i < 4; i++) {
       const pixel = document.createElement('div');
-      pixel.className = 'cursor-pixel';
-      cursor.appendChild(pixel);
-      pixels.push(pixel);
+      pixel.className = 'center-pixel';
+      centerCluster.appendChild(pixel);
     }
 
     let mouseX = 0;
     let mouseY = 0;
-    let cursorX = 0;
-    let cursorY = 0;
+    const positions: { x: number; y: number }[] = [];
 
     const handleMouseMove = (e: MouseEvent) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
+
+      // Store position for trail
+      positions.unshift({ x: mouseX, y: mouseY });
+      if (positions.length > trailLength) {
+        positions.pop();
+      }
     };
 
     const animateCursor = () => {
-      // Smooth follow
-      cursorX += (mouseX - cursorX) * 0.15;
-      cursorY += (mouseY - cursorY) * 0.15;
+      // Position cursor directly at mouse (no smooth following)
+      cursor.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
 
-      cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+      // Update trail positions
+      trail.forEach((element, index) => {
+        if (positions[index]) {
+          const offset = index * 8;
+          element.style.transform = `translate(${positions[index].x - mouseX}px, ${positions[index].y - mouseY}px)`;
+        }
+      });
 
-      // Animate pixels
+      // Animate center pixels
+      const pixels = centerCluster.querySelectorAll('.center-pixel');
       pixels.forEach((pixel, index) => {
-        const angle = (index / pixelCount) * Math.PI * 2 + Date.now() * 0.002;
-        const distance = 15 + Math.sin(Date.now() * 0.003 + index) * 8;
+        const angle = (index / 4) * Math.PI * 2 + Date.now() * 0.003;
+        const distance = 6 + Math.sin(Date.now() * 0.004 + index) * 3;
         const x = Math.cos(angle) * distance;
         const y = Math.sin(angle) * distance;
+        const size = 4 + Math.sin(Date.now() * 0.006 + index * 0.8) * 2;
         
-        const size = 3 + Math.sin(Date.now() * 0.005 + index * 0.5) * 2;
-        
-        pixel.style.transform = `translate(${x}px, ${y}px)`;
-        pixel.style.width = `${size}px`;
-        pixel.style.height = `${size}px`;
+        (pixel as HTMLElement).style.transform = `translate(${x}px, ${y}px)`;
+        (pixel as HTMLElement).style.width = `${size}px`;
+        (pixel as HTMLElement).style.height = `${size}px`;
       });
 
       requestAnimationFrame(animateCursor);
