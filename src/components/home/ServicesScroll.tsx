@@ -69,11 +69,12 @@ export const ServicesScroll = () => {
       const totalServices = services.length;
       
       // Master Timeline
+      // We increase the scroll distance to account for the longer animations with glitch delay
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: container,
           start: "top top",
-          end: `+=${totalServices * 100}%`,
+          end: `+=${totalServices * 200}%`, // Increased from 100% to 200%
           pin: true,
           scrub: 0.5,
           snap: {
@@ -127,7 +128,8 @@ export const ServicesScroll = () => {
         const titleNext = slideNext.querySelector(".service-title");
         const itemsNext = slideNext.querySelectorAll(".service-item");
 
-        const startTime = i;
+        // Each transition now takes 2 units of time (1 for normal transition + 1 for glitch delay)
+        const startTime = i * 2;
 
         // 1. Current Service Exit (complete before next enters)
         tl.to(
