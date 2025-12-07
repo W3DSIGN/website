@@ -4,7 +4,7 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="DSIGN Creative Studio // Website Under Construction">
   <main
-    class="h-screen w-full flex flex-col items-center justify-center bg-brand-yellow p-4 transition-colors duration-500 ease-out group [&:has(#logo-link:hover)]:bg-brand-pink"
+    class="h-screen w-full flex flex-col items-center justify-center p-4 transition-colors-container"
   >
     <div class="w-full max-w-lg mb-8 flex justify-center">
       <a
@@ -12,8 +12,9 @@ import Layout from "../layouts/Layout.astro";
         href="https://www.instagram.com/wedsign.eu"
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-block w-full text-brand-pink transition-colors duration-300 ease-out hover:text-brand-yellow"
+        class="inline-block w-full logo-interaction"
       >
+        <!-- Inline SVG with fill-current to obey CSS color -->
         <svg
           viewBox="0 0 284 51"
           xmlns="http://www.w3.org/2000/svg"
