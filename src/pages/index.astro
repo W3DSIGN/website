@@ -2,27 +2,29 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Under Construction">
+<Layout title="DSIGN Creative Studio // Website Under Construction">
   <main
-    class="h-screen w-full flex flex-col items-center justify-center bg-[var(--color-brand-yellow)] p-4"
+    class="h-screen w-full flex flex-col items-center justify-center bg-brand-yellow p-4 transition-colors duration-500 ease-out [&:has(#logo-link:hover)]:bg-brand-pink"
   >
-    <div class="w-full max-w-lg mb-8">
+    <div class="w-full max-w-lg mb-8 flex justify-center">
       <a
+        id="logo-link"
         href="https://www.instagram.com/wedsign.eu"
         target="_blank"
         rel="noopener noreferrer"
+        class="inline-block w-full"
       >
         <img
           src="/w3dsign.svg"
           alt="W3DSIGN Logo"
-          class="w-full h-auto cursor-pointer hover:opacity-80 transition-opacity"
+          class="w-full h-auto transition-all duration-300 ease-out hover:[filter:brightness(0)_saturate(100%)_invert(86%)_sepia(85%)_saturate(1478%)_hue-rotate(356deg)_brightness(102%)_contrast(105%)]"
         />
       </a>
     </div>
     <h1
-      class="text-xl md:text-3xl lg:text-4xl font-kode-mono text-brand-pink text-center uppercase tracking-widest leading-tight"
+      class="text-sm md:text-base lg:text-xl font-kode-mono text-brand-pink text-center uppercase tracking-widest leading-tight transition-colors duration-300 [.has-\[\#logo-link\:hover\]_&]:text-brand-yellow"
     >
-      Web Under<br />Construction
+      Web Under Construction
     </h1>
   </main>
 </Layout>
