@@ -4,13 +4,23 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="Under Construction">
   <main
-    class="h-screen w-full flex flex-col items-center justify-center bg-theme p-4"
+    class="h-screen w-full flex flex-col items-center justify-center bg-[var(--color-brand-yellow)] p-4"
   >
-    <div class="w-full max-w-4xl mb-12 animate-pulse">
-      <img src="/w3dsign.svg" alt="W3DSIGN Logo" class="w-full h-auto" />
+    <div class="w-full max-w-lg mb-8">
+      <a
+        href="https://www.instagram.com/wedsign.eu"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          src="/w3dsign.svg"
+          alt="W3DSIGN Logo"
+          class="w-full h-auto cursor-pointer hover:opacity-80 transition-opacity"
+        />
+      </a>
     </div>
     <h1
-      class="text-3xl md:text-5xl lg:text-7xl font-kode-mono text-brand-pink text-center uppercase tracking-widest leading-tight"
+      class="text-xl md:text-3xl lg:text-4xl font-kode-mono text-brand-pink text-center uppercase tracking-widest leading-tight"
     >
       Web Under<br />Construction
     </h1>
