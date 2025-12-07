@@ -1,22 +1,18 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Header from "../components/layout/Header.astro";
-import { Hero } from "../components/home/Hero";
-import Intro from "../components/home/Intro.astro";
-import { ServicesScroll } from "../components/home/ServicesScroll";
-import { SelectedWork } from "../components/home/SelectedWork";
-import { OurTeam } from "../components/home/OurTeam";
-import { Footer } from "../components/layout/Footer";
 ---
 
-<Layout title="Creative Digital Studio">
-  <Header />
-  <main class="flex flex-col gap-4">
-    <Hero client:load />
-    <Intro />
-    <ServicesScroll client:load />
-    <SelectedWork client:load />
-    <OurTeam client:load />
-    <Footer client:load />
+<Layout title="Under Construction">
+  <main
+    class="h-screen w-full flex flex-col items-center justify-center bg-theme p-4"
+  >
+    <div class="w-full max-w-4xl mb-12 animate-pulse">
+      <img src="/w3dsign.svg" alt="W3DSIGN Logo" class="w-full h-auto" />
+    </div>
+    <h1
+      class="text-3xl md:text-5xl lg:text-7xl font-kode-mono text-brand-pink text-center uppercase tracking-widest leading-tight"
+    >
+      Web Under<br />Construction
+    </h1>
   </main>
 </Layout>
