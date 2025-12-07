@@ -3,8 +3,8 @@
 ---
 
 <section
-  id="intro"
-  class="w-full h-dvh bg-theme flex items-center justify-center px-6 lg:px-12 xl:px-16"
+  id="about-us"
+  class="w-full h-dvh snap-start bg-theme flex items-center justify-center px-6 lg:px-12 xl:px-16"
 >
   <div class="max-w-7xl mx-auto w-full">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 lg:gap-24">
@@ -14,24 +14,45 @@
           W3 DSIGN is a creative digital studio specializing in branding, web
           design, and digital marketing for forward-thinking brands.
         </p>
-        <p class="text-base md:text-lg leading-relaxed">
+        <p class="text-lg md:text-xl leading-relaxed">
           We offer a full-service approach, guiding our clients from concept to
           execution to deliver seamless, high-end digital experiences.
         </p>
       </div>
 
-      {/* Right Column */}
+      {/* Right Column - Text Only */}
       <div class="space-y-6 text-theme">
-        <p class="text-base md:text-lg leading-relaxed">
+        <p class="text-lg md:text-xl leading-relaxed">
           Our team is dedicated to creating unique content that embodies and
           elevates each client's exclusive vision, wherever their creative
           ambitions take them.
-        </p>
-        <p class="text-base md:text-lg leading-relaxed">
-          Our creative approach ensures every detail is handled with expertise
-          and precision.
         </p>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const section = document.getElementById("about-us");
+
+  if (section) {
+    gsap.fromTo(
+      section,
+      { clipPath: "inset(0 0 100% 0)" },
+      {
+        clipPath: "inset(0 0 0% 0)",
+        duration: 1.2,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 90%",
+        },
+      }
+    );
+  }
+</script>

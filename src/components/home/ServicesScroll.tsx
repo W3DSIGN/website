@@ -249,7 +249,7 @@ export const ServicesScroll = () => {
                   <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 xl:gap-12 max-w-4xl">
                     {service.items.map((item, i) => (
                       <div key={i} className="service-item opacity-0 transform translate-y-12 will-change-transform">
-                        <span className="block w-4 h-0.5 bg-black mb-3"></span>
+                        <span className="block w-4 h-0.5 bg-brand-pink mb-3"></span>
                         <div className="overflow-hidden">
                         <p className="text-xs lg:text-sm xl:text-base text-theme leading-tight">
                           {item}

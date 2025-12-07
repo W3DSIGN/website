@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
-
+import { ThemeToggle } from '../ui/ThemeToggle';
 
 export const Hero = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,7 +12,7 @@ export const Hero = () => {
       if (isMenuOpen) {
         // Open animation
         gsap.to(menuRef.current, {
-          clipPath: 'inset(0 0% 0 0)',
+          clipPath: 'inset(0 0 0 0%)',
           duration: 0.8,
           ease: 'power3.inOut'
         });
@@ -32,7 +32,7 @@ export const Hero = () => {
       } else {
         // Close animation
         gsap.to(menuRef.current, {
-          clipPath: 'inset(0 100% 0 0)',
+          clipPath: 'inset(0 0 0 100%)',
           duration: 0.8,
           ease: 'power3.inOut'
         });
@@ -110,9 +110,10 @@ export const Hero = () => {
 
       // 4. Menu Button Slide Down
       .fromTo(menuButton,
-        { y: '-100%' },
+        { y: '-100%', opacity: 0 },
         {
           y: '0%',
+          opacity: 1,
           duration: 0.6,
           ease: 'power3.out'
         },
@@ -136,51 +137,90 @@ export const Hero = () => {
         onClick={() => setIsMenuOpen(true)}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        className={`menu-button fixed top-0 right-4 bg-black p-4 flex items-center justify-center text-white text-sm lg:text-base z-50 cursor-pointer hover:bg-gray-900 transition-colors uppercase tracking-wider will-change-transform`}
+        className={`menu-button fixed top-0 right-4 bg-black p-4 flex items-center justify-center text-white text-sm lg:text-base z-50 cursor-pointer hover:bg-gray-900 transition-colors uppercase tracking-wider will-change-transform ${isMenuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
       >
-        {isMenuOpen ? 'Close' : 'Menu'}
+        Menu
       </div>
 
       {/* Menu Overlay */}
       <div 
         ref={menuRef}
-        className="fixed top-0 right-0 w-auto min-w-[300px] h-auto bg-black z-40 flex flex-col p-8 md:p-12 pt-24 justify-between will-change-[clip-path]"
-        style={{ clipPath: 'inset(0 100% 0 0)' }}
+        className="fixed top-0 right-0 w-full md:w-[50vw] lg:w-[40vw] h-dvh bg-black z-60 flex flex-col p-8 md:p-12 lg:p-16 justify-between will-change-[clip-path]"
+        style={{ clipPath: 'inset(0 0 0 100%)' }}
       >
-
+        {/* Close Button */}
+        <div className="w-full flex justify-end mb-12">
+          <button 
+            onClick={() => setIsMenuOpen(false)}
+            onMouseEnter={(e) => gsap.to(e.currentTarget, { rotation: 90, duration: 0.3 })}
+            onMouseLeave={(e) => gsap.to(e.currentTarget, { rotation: 0, duration: 0.3 })}
+            className="text-white hover:text-gray-300 transition-colors will-change-transform"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
 
         {/* Menu Content */}
         <div ref={menuContentRef} className="flex flex-col gap-4 text-white">
-          {[
-            { label: 'Services', href: '#services' },
-            { label: 'Latest Projects', href: '#latest-projects' },
-            { label: 'Our Team', href: '#team' },
-            { label: 'Contact', href: '#contact' }
-          ].map((item, index) => (
-            <a 
-              key={index}
-              href={item.href} 
-              onClick={() => setIsMenuOpen(false)} 
-              onMouseEnter={(e) => gsap.to(e.currentTarget, { x: 10, duration: 0.2 })}
-              onMouseLeave={(e) => gsap.to(e.currentTarget, { x: 0, duration: 0.2 })}
-              className="text-3xl md:text-4xl lg:text-5xl uppercase hover:text-brand-pink transition-colors will-change-transform"
-            >
-              {item.label}
-            </a>
-          ))}
-          <div className="mt-8 pt-8 border-t border-white/20">
-             {/* Footer/Bottom Info */}
-            <div className="text-white/50 text-sm uppercase tracking-widest">
-              W3 DSIGN © 2024
-            </div>
-          </div>
+          <a 
+            href="#about-us" 
+            onClick={() => setIsMenuOpen(false)} 
+            onMouseEnter={(e) => gsap.to(e.currentTarget, { x: 10, duration: 0.2 })}
+            onMouseLeave={(e) => gsap.to(e.currentTarget, { x: 0, duration: 0.2 })}
+            className="text-3xl md:text-4xl lg:text-5xl uppercase hover:text-brand-pink transition-colors will-change-transform"
+          >
+            About Us
+          </a>
+          <a 
+            href="#services" 
+            onClick={() => setIsMenuOpen(false)} 
+            onMouseEnter={(e) => gsap.to(e.currentTarget, { x: 10, duration: 0.2 })}
+            onMouseLeave={(e) => gsap.to(e.currentTarget, { x: 0, duration: 0.2 })}
+            className="text-3xl md:text-4xl lg:text-5xl uppercase hover:text-brand-pink transition-colors will-change-transform"
+          >
+            Services
+          </a>
+          <a 
+            href="#latest-projects" 
+            onClick={() => setIsMenuOpen(false)} 
+            onMouseEnter={(e) => gsap.to(e.currentTarget, { x: 10, duration: 0.2 })}
+            onMouseLeave={(e) => gsap.to(e.currentTarget, { x: 0, duration: 0.2 })}
+            className="text-3xl md:text-4xl lg:text-5xl uppercase hover:text-brand-pink transition-colors will-change-transform"
+          >
+            Latest Projects
+          </a>
+          <a 
+            href="#our-team" 
+            onClick={() => setIsMenuOpen(false)} 
+            onMouseEnter={(e) => gsap.to(e.currentTarget, { x: 10, duration: 0.2 })}
+            onMouseLeave={(e) => gsap.to(e.currentTarget, { x: 0, duration: 0.2 })}
+            className="text-3xl md:text-4xl lg:text-5xl uppercase hover:text-brand-pink transition-colors will-change-transform"
+          >
+            Our Team
+          </a>
+          <a 
+            href="#contact" 
+            onClick={() => setIsMenuOpen(false)} 
+            onMouseEnter={(e) => gsap.to(e.currentTarget, { x: 10, duration: 0.2 })}
+            onMouseLeave={(e) => gsap.to(e.currentTarget, { x: 0, duration: 0.2 })}
+            className="text-3xl md:text-4xl lg:text-5xl uppercase hover:text-brand-pink transition-colors will-change-transform"
+          >
+            Contact
+          </a>
+          <ThemeToggle />
+        </div>
+
+        {/* Footer/Bottom Info */}
+        <div className="mt-auto text-white/50 text-sm uppercase tracking-widest">
+          W3 DSIGN © 2024
         </div>
       </div>
 
-
-
       {/* Hero Grid Container */}
-      <div className="grid grid-cols-6 grid-rows-8 relative w-full h-dvh lg:grid-cols-12 lg:grid-rows-12 bg-theme font-kode-mono overflow-hidden">
+      <div className="grid grid-cols-6 grid-rows-8 relative w-full h-dvh snap-start lg:grid-cols-12 lg:grid-rows-12 bg-theme font-kode-mono overflow-hidden">
         
         {/* Hero Image/Video Container - Right Side */}
         <div className="hero-image-container col-start-1 col-end-7 row-start-3 row-end-9 lg:col-start-5 lg:col-end-13 lg:row-start-1 lg:row-end-13 bg-cover p-0 lg:p-4 relative overflow-hidden">

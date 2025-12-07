@@ -34,8 +34,24 @@ export const OurTeam = () => {
       const ScrollTriggerModule = await import('gsap/ScrollTrigger');
       
       gsap = gsapModule.default;
-      ScrollTrigger = ScrollTriggerModule.ScrollTrigger;
+      const ScrollTrigger = ScrollTriggerModule.ScrollTrigger;
       gsap.registerPlugin(ScrollTrigger);
+
+      // Block Entrance Animation
+      if (containerRef.current) {
+        gsap.fromTo(containerRef.current,
+          { clipPath: 'inset(0 0 100% 0)' },
+          {
+            clipPath: 'inset(0 0 0% 0)',
+            duration: 1.2,
+            ease: 'power4.out',
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start: 'top 90%',
+            }
+          }
+        );
+      }
 
       // Title Animation
       if (titleRef.current) {
@@ -121,23 +137,20 @@ export const OurTeam = () => {
   const title = "OUR TEAM";
 
   return (
-    <section id="team" ref={containerRef} className="w-full min-h-dvh p-4 md:py-24 bg-theme grid grid-cols-1 md:grid-cols-2 md:grid-rows-[1fr_auto] gap-4 overflow-hidden">
+    <section id="our-team" ref={containerRef} className="w-full min-h-dvh snap-start p-4 md:py-24 bg-theme grid grid-cols-1 md:grid-cols-2 md:grid-rows-[1fr_auto] gap-4 overflow-hidden">
       
       {/* Block A: Title & Main Description */}
       <div className="flex flex-col md:col-start-1 md:row-start-1">
         {/* Title */}
-        <div className="mb-8 md:mb-0">
-          <h2 ref={titleRef} className="text-[15vw] md:text-[8vw] leading-[0.8] text-theme font-kode-mono uppercase break-words">
-            {title.split('').map((char, i) => (
-              <span key={i} className="char inline-block transform translate-y-full will-change-transform">
-                {char === ' ' ? '\u00A0' : char}
-              </span>
-            ))}
+        <div className="mb-8 md:mb-12 pb-4">
+          <h2 ref={titleRef} className="text-[12vw] md:text-[8vw] leading-[0.8] tracking-tighter text-theme font-kode-mono uppercase break-words block">
+            <span className="inline md:block">OUR</span>
+            <span className="inline md:block">{' '}TEAM</span>
           </h2>
         </div>
 
         {/* Main Description */}
-        <div ref={descRef} className="mt-12 max-w-xl space-y-6 text-theme font-kode-mono text-lg md:text-xl">
+        <div ref={descRef} className="md:my-auto max-w-xl space-y-6 text-theme font-kode-mono text-lg md:text-xl">
           <p>
             W3DSIGN was founded in 2021 by Myriam Ettayeb, Rebeca Pimentel, and Sheila Gomis, 
             building on over a decade of experience in the fashion and luxury industry.

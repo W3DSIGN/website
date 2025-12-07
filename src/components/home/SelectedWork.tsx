@@ -16,8 +16,10 @@ const projects = [
 ];
 
 export const SelectedWork = () => {
-  const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const rowRefs = useRef<(HTMLElement | null)[]>([]);
   const titleRef = useRef<HTMLHeadingElement>(null);
+
+  const containerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const initGSAP = async () => {
@@ -27,6 +29,22 @@ export const SelectedWork = () => {
       gsap = gsapModule.default;
       ScrollTrigger = ScrollTriggerModule.ScrollTrigger;
       gsap.registerPlugin(ScrollTrigger);
+
+      // Block Entrance Animation
+      if (containerRef.current) {
+        gsap.fromTo(containerRef.current,
+          { clipPath: 'inset(0 0 100% 0)' },
+          {
+            clipPath: 'inset(0 0 0% 0)',
+            duration: 1.2,
+            ease: 'power4.out',
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start: 'top 90%',
+            }
+          }
+        );
+      }
 
       // Title Animation
       if (titleRef.current) {
@@ -84,19 +102,19 @@ export const SelectedWork = () => {
   const title = "LATEST PROJECTS";
 
   return (
-    <section id="latest-projects" className="w-full bg-theme md:py-24 p-4">
-      {/* Title */}
+    <section id="latest-projects" ref={containerRef} className="w-full min-h-dvh snap-start bg-theme px-4 md:px-8 lg:px-16 py-12 md:py-24 flex flex-col justify-between overflow-hidden">
+      {/* Header */}
       <div className="w-full px-4 mb-8 md:mb-12 pb-4 overflow-hidden -mx-4">
         {/* Mobile Title - 2 Rows */}
         <div className="md:hidden">
-          <h2 className="text-[15vw] leading-none text-theme font-kode-mono flex flex-col">
+          <h2 className="text-[12vw] leading-[0.8] tracking-tighter text-theme font-kode-mono flex flex-col">
             <span className="block">LATEST</span>
             <span className="block">PROJECTS</span>
           </h2>
         </div>
 
         {/* Desktop Title - Animated */}
-        <h2 ref={titleRef} className="hidden md:flex text-[15vw] md:text-[12vw] lg:text-[10vw] leading-none text-theme flex-wrap overflow-hidden font-kode-mono">
+        <h2 ref={titleRef} className="hidden md:flex text-[12vw] md:text-[8vw] leading-[0.8] tracking-tighter text-theme flex-wrap overflow-hidden font-kode-mono">
           {title.split('').map((char, i) => (
             <span key={i} className="char inline-block transform translate-y-full will-change-transform">
               {char === ' ' ? '\u00A0' : char}
@@ -105,16 +123,17 @@ export const SelectedWork = () => {
         </h2>
       </div>
 
-      {/* Projects List */}
-      <div className="w-full">
+      {/* Project Rows */}
+      <div className="flex flex-col">
         {projects.map((project, index) => (
-          <div
+          <a 
+            href="/project-template"
             key={index}
             ref={el => { rowRefs.current[index] = el }}
-            className="group relative px-4 py-3 md:py-4 border-b border-theme last:border-b-0 overflow-hidden cursor-pointer will-change-transform"
+            className="group relative block px-4 py-3 md:py-4 border-b border-theme last:border-b-0 overflow-hidden cursor-pointer will-change-transform"
           >
             {/* Hover Background - Clip Mask Effect */}
-            <div className="absolute inset-0 bg-brand-yellow z-0 transition-transform duration-500 ease-out transform scale-y-0 group-hover:scale-y-100 origin-center will-change-transform" />
+            <div className="absolute inset-0 bg-[var(--hover-overlay)] z-0 transition-transform duration-500 ease-out transform scale-y-0 group-hover:scale-y-100 origin-center will-change-transform" />
 
             {/* Content */}
             <div className="relative z-10">
@@ -157,7 +176,7 @@ export const SelectedWork = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </a>
         ))}
       </div>
     </section>
